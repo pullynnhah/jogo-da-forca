@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import GlobalStyle from "./components/styles/GlobalStyle";
-import Alphabet from "./components/Alphabet/Alphabet";
+import Alphabet from "./components/Letters/Letters";
 import Game from "./components/Game";
 import Guess from "./components/Guess";
 
 export default function App() {
   const [lives, setLives] = useState(6);
-  const [secret, setSecret] = useState("C_o_o_a_e");
+  const [secret, setSecret] = useState([]);
 
   return (
     <>

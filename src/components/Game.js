@@ -9,7 +9,7 @@ import hangman5 from "../assets/hangman5.png";
 import hangman6 from "../assets/hangman6.png";
 
 import { words } from "../utils/data";
-import { random } from "../utils/tools";
+import { normalize, random } from "../utils/tools";
 
 export default function Game({ lives, setLives, secret, setSecret }) {
   const hangmen = [
@@ -25,14 +25,28 @@ export default function Game({ lives, setLives, secret, setSecret }) {
   function chooseWord() {
     const word = words[random(words.length)];
     console.log("SECRET:", word); /* FIXME: remove this */
-    setSecret(word);
+    setSecret(
+      [...word].map(letter => ({
+        letter,
+        normLetter: normalize(letter),
+        hidden: true,
+      }))
+    );
     setLives(6);
   }
+
+  function displayWord() {
+    if (!secret) return "";
+    return secret
+      .map(({ letter, hidden }) => (hidden ? "_" : letter))
+      .join(" ");
+  }
+
   return (
     <Container>
       <img src={hangmen[lives]} alt="forca" />
       <button onClick={chooseWord}>Escolher Palavra</button>
-      <h1>{secret.split("").join(" ")}</h1>
+      <h1>{displayWord()}</h1>
     </Container>
   );
 }
