@@ -28,9 +28,12 @@ export default function Game({ lives, secret }) {
 }
 
 const Container = styled.div`
+  width: 100vw;
+  margin: 50px 0;
   display: grid;
+  justify-content: center;
   justify-items: flex-end;
-  grid-template-columns: 400px 500px;
+  grid-template-columns: 400px 600px;
   grid-template-areas:
     "image btn"
     "image word";

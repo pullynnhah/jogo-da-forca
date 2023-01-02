@@ -10,18 +10,15 @@ export default function App() {
   const [secret, setSecret] = useState("C_o_o_a_e");
 
   return (
-    <Container>
+    <>
       <GlobalStyle />
       <Wrapper>
         <Game lives={lives} secret={secret} setSecret={setSecret} />
         <Alphabet lives={lives} setLives={setLives} />
         <Guess />
       </Wrapper>
-    </Container>
+    </>
   );
 }
 
-const Container = styled.div`
-  margin: 50px;
-`;
 const Wrapper = styled.div``;
