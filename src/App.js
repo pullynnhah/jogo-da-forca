@@ -13,7 +13,12 @@ export default function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <Game lives={lives} secret={secret} setSecret={setSecret} />
+        <Game
+          lives={lives}
+          setLives={setLives}
+          secret={secret}
+          setSecret={setSecret}
+        />
         <Alphabet lives={lives} setLives={setLives} />
         <Guess />
       </Wrapper>

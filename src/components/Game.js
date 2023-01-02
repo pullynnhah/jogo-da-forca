@@ -8,7 +8,10 @@ import hangman4 from "../assets/hangman4.png";
 import hangman5 from "../assets/hangman5.png";
 import hangman6 from "../assets/hangman6.png";
 
-export default function Game({ lives, secret }) {
+import { words } from "../utils/data";
+import { random } from "../utils/tools";
+
+export default function Game({ lives, setLives, secret, setSecret }) {
   const hangmen = [
     hangman6,
     hangman5,
@@ -18,10 +21,17 @@ export default function Game({ lives, secret }) {
     hangman1,
     hangman0,
   ];
+
+  function chooseWord() {
+    const word = words[random(words.length)];
+    console.log("SECRET:", word); /* FIXME: remove this */
+    setSecret(word);
+    setLives(6);
+  }
   return (
     <Container>
       <img src={hangmen[lives]} alt="forca" />
-      <button>Escolher Palavra</button>
+      <button onClick={chooseWord}>Escolher Palavra</button>
       <h1>{secret.split("").join(" ")}</h1>
     </Container>
   );
