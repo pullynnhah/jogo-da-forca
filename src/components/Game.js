@@ -11,7 +11,15 @@ import hangman6 from "../assets/hangman6.png";
 import { words } from "../utils/data";
 import { normalize, random } from "../utils/tools";
 
-export default function Game({ lives, setLives, secret, setSecret }) {
+export default function Game({
+  lives,
+  setLives,
+  secret,
+  setSecret,
+  isCorrectGuess,
+  letters,
+  setLetters,
+}) {
   const hangmen = [
     hangman6,
     hangman5,
@@ -33,6 +41,12 @@ export default function Game({ lives, setLives, secret, setSecret }) {
       }))
     );
     setLives(6);
+
+    const newLetters = { ...letters };
+    for (const key in newLetters) {
+      newLetters[key] = false;
+    }
+    setLetters(newLetters);
   }
 
   function displayWord() {
@@ -42,11 +56,16 @@ export default function Game({ lives, setLives, secret, setSecret }) {
       .join(" ");
   }
 
+  function getColor() {
+    if (isCorrectGuess) return "#27AE60";
+    return secret?.some(({ hidden }) => hidden) ? "#000" : "#f00";
+  }
+
   return (
     <Container>
       <img src={hangmen[lives]} alt="forca" />
       <button onClick={chooseWord}>Escolher Palavra</button>
-      <h1>{displayWord()}</h1>
+      <h1 color={getColor()}>{displayWord()}</h1>
     </Container>
   );
 }
@@ -84,6 +103,7 @@ const Container = styled.div`
   h1 {
     grid-area: word;
     align-self: flex-end;
+    color: ${props => props.color};
     font: 50px/68px "Noto Sans", sans-serif;
   }
 `;
