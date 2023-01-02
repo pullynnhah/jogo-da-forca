@@ -95,7 +95,11 @@ body,
 input,
 input::placeholder {
   font-family: "Roboto", sans-serif;
-  font-weight: 700;
+
+}
+
+button {
+  text-align: center;
 }
 `;
 
