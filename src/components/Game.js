@@ -56,6 +56,14 @@ const Container = styled.div`
     border-radius: 8px;
     margin-top: 40px;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
   }
 
   h1 {

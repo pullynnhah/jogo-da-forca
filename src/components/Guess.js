@@ -50,8 +50,9 @@ const Container = styled.div`
     border: 1px solid #ccc;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
+
     &:disabled {
-      background: #eee;
+      background: #e6ecf2;
       cursor: not-allowed;
     }
   }

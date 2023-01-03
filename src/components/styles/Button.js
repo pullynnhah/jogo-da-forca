@@ -22,6 +22,10 @@ const Button = styled.button`
   &:hover:not(:disabled) {
     opacity: 0.7;
   }
+
+  &:active:not(:disabled) {
+    transform: scale(0.9);
+  }
 `;
 
 export default Button;
