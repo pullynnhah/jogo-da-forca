@@ -1,14 +1,15 @@
-import useState from "react";
 import styled from "styled-components";
+
+import { alphabet } from "../utils/data";
 
 export default function Letters({ letters, guessLetter }) {
   return (
     <Container>
-      {Object.entries(letters).map(([letter, disabled]) => (
+      {alphabet.map(letter => (
         <button
           key={letter}
           onClick={() => guessLetter(letter)}
-          disabled={disabled}>
+          disabled={letters.includes(letter)}>
           {letter}
         </button>
       ))}
@@ -46,6 +47,4 @@ const Container = styled.div`
       opacity: 0.7;
     }
   }
-
-  button: disabled;
 `;

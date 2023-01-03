@@ -8,18 +8,7 @@ import hangman4 from "../assets/hangman4.png";
 import hangman5 from "../assets/hangman5.png";
 import hangman6 from "../assets/hangman6.png";
 
-import { words } from "../utils/data";
-import { normalize, random } from "../utils/tools";
-
-export default function Game({
-  lives,
-  setLives,
-  secret,
-  setSecret,
-  isCorrectGuess,
-  letters,
-  setLetters,
-}) {
+export default function Game({ lives, startGame, word, color }) {
   const hangmen = [
     hangman6,
     hangman5,
@@ -30,42 +19,11 @@ export default function Game({
     hangman0,
   ];
 
-  function chooseWord() {
-    const word = words[random(words.length)];
-    console.log("SECRET:", word); /* FIXME: remove this */
-    setSecret(
-      [...word].map(letter => ({
-        letter,
-        normLetter: normalize(letter),
-        hidden: true,
-      }))
-    );
-    setLives(6);
-
-    const newLetters = { ...letters };
-    for (const key in newLetters) {
-      newLetters[key] = false;
-    }
-    setLetters(newLetters);
-  }
-
-  function displayWord() {
-    if (!secret) return "";
-    return secret
-      .map(({ letter, hidden }) => (hidden ? "_" : letter))
-      .join(" ");
-  }
-
-  function getColor() {
-    if (isCorrectGuess) return "#27AE60";
-    return secret?.some(({ hidden }) => hidden) ? "#000" : "#f00";
-  }
-
   return (
-    <Container>
+    <Container color={color}>
       <img src={hangmen[lives]} alt="forca" />
-      <button onClick={chooseWord}>Escolher Palavra</button>
-      <h1 color={getColor()}>{displayWord()}</h1>
+      <button onClick={startGame}>Escolher Palavra</button>
+      <h1>{word.join(" ")}</h1>
     </Container>
   );
 }
