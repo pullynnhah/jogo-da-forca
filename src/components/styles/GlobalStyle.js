@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 /***
@@ -100,6 +100,7 @@ input::placeholder {
 
 button {
   text-align: center;
+  transition: all 300ms;
 }
 `;
 
