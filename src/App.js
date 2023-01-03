@@ -67,6 +67,7 @@ export default function App() {
     setLetters(alphabet);
     setIsInputDisabled(true);
     setColor(isWinner ? "#27AE60" : "#f00");
+    if (!isWinner) setLives(0);
   }
 
   return (
