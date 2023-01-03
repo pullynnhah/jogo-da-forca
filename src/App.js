@@ -20,7 +20,7 @@ export default function App() {
 
   function startGame() {
     const randomWord = words[random(words.length)];
-    console.log("SECRET:", randomWord); /* FIXME: remove this */
+
     setSecret([...randomWord]);
     setNormSecret([...normalize(randomWord)]);
     setWord([..."_".repeat(randomWord.length)]);
@@ -58,6 +58,7 @@ export default function App() {
   function gameOver(isWinner) {
     setWord(secret);
     setLetters(alphabet);
+    setIsInputDisabled(true);
     setColor(isWinner ? "#27AE60" : "#f00");
   }
 
@@ -72,6 +73,8 @@ export default function App() {
           normSecret={normSecret}
           gameOver={gameOver}
           isInputDisabled={isInputDisabled}
+          input={input}
+          setInput={setInput}
         />
       </Wrapper>
     </>

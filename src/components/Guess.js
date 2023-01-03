@@ -6,12 +6,26 @@ export default function Guess({
   normSecret,
   gameOver,
   isInputDisabled,
+  input,
+  setInput,
 }) {
+  function handleInput() {
+    gameOver(input === secret.join("") || input === normSecret.join(""));
+    setInput("");
+  }
+
   return (
     <Container>
       <label htmlFor="guess">Já sei a palavra!</label>
-      <input disabled={isInputDisabled} />
-      <GuessButton disabled={isInputDisabled}>Chutar</GuessButton>
+      <input
+        disabled={isInputDisabled}
+        value={input}
+        id="guess"
+        onChange={e => setInput(e.target.value)}
+      />
+      <GuessButton onClick={handleInput} disabled={isInputDisabled}>
+        Chutar
+      </GuessButton>
     </Container>
   );
 }
@@ -32,10 +46,14 @@ const Container = styled.div`
     width: 353px;
     height: 40px;
 
-    background: #ffffff;
-    border: 1px solid #cccccc;
+    background: #fff;
+    border: 1px solid #ccc;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
+    &:disabled {
+      background: #eee;
+      cursor: not-allowed;
+    }
   }
 `;
 
