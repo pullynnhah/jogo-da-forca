@@ -33,25 +33,32 @@ export default function App() {
 
   function guessLetter(letter) {
     const newLetters = [...letters, letter];
-
     setLetters(newLetters);
 
-    if (!normSecret.includes(letter)) {
-      const newLives = lives - 1;
-      setLives(newLives);
-
-      if (newLives === 0) {
-        gameOver(false);
-      }
+    if (normSecret.includes(letter)) {
+      correctGuess(newLetters);
     } else {
-      const newWord = normSecret.map((letter, idx) =>
-        newLetters.includes(letter) ? secret[idx] : "_"
-      );
-      setWord(newWord);
+      wrongGuess();
+    }
+  }
 
-      if (!newWord.includes("_")) {
-        gameOver(true);
-      }
+  function wrongGuess() {
+    const newLives = lives - 1;
+    setLives(newLives);
+
+    if (newLives === 0) {
+      gameOver(false);
+    }
+  }
+
+  function correctGuess(newLetters) {
+    const newWord = normSecret.map((letter, idx) =>
+      newLetters.includes(letter) ? secret[idx] : "_"
+    );
+    setWord(newWord);
+
+    if (!newWord.includes("_")) {
+      gameOver(true);
     }
   }
 
@@ -82,7 +89,11 @@ export default function App() {
 }
 
 const Wrapper = styled.div`
+  width: 90vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
 `;

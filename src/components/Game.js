@@ -29,8 +29,7 @@ export default function Game({ lives, startGame, word, color }) {
 }
 
 const Container = styled.div`
-  width: 100vw;
-  margin: 50px 0;
+  width: 100%;
   display: grid;
   justify-content: center;
   justify-items: flex-end;
@@ -56,6 +55,7 @@ const Container = styled.div`
     background: #27ae60;
     border-radius: 8px;
     margin-top: 40px;
+    cursor: pointer;
   }
 
   h1 {
@@ -63,5 +63,6 @@ const Container = styled.div`
     align-self: flex-end;
     color: ${props => props.color};
     font: 50px/68px "Noto Sans", sans-serif;
+    margin-bottom: 27px;
   }
 `;
