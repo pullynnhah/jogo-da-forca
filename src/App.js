@@ -23,7 +23,7 @@ export default function App() {
 
     setSecret([...randomWord]);
     setNormSecret([...normalize(randomWord)]);
-    setWord([..."_".repeat(randomWord.length)]);
+    setWord([..."_".repeat(randomWord.length)].map(dash => ` ${dash}`));
     setLives(6);
     setLetters([]);
     setColor("#000");
@@ -53,11 +53,11 @@ export default function App() {
 
   function correctGuess(newLetters) {
     const newWord = normSecret.map((letter, idx) =>
-      newLetters.includes(letter) ? secret[idx] : "_"
+      newLetters.includes(letter) ? secret[idx] : " _"
     );
     setWord(newWord);
 
-    if (!newWord.includes("_")) {
+    if (!newWord.includes(" _")) {
       gameOver(true);
     }
   }

@@ -23,7 +23,7 @@ export default function Game({ lives, startGame, word, color }) {
     <Container color={color}>
       <img src={hangmen[lives]} alt="forca" />
       <button onClick={startGame}>Escolher Palavra</button>
-      <h1>{word.join(" ")}</h1>
+      <h1>{word}</h1>
     </Container>
   );
 }
