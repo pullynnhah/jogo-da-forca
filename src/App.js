@@ -15,6 +15,9 @@ export default function App() {
   const [letters, setLetters] = useState(alphabet);
   const [color, setColor] = useState("#000");
 
+  const [input, setInput] = useState("");
+  const [isInputDisabled, setIsInputDisabled] = useState(true);
+
   function startGame() {
     const randomWord = words[random(words.length)];
     console.log("SECRET:", randomWord); /* FIXME: remove this */
@@ -24,6 +27,8 @@ export default function App() {
     setLives(6);
     setLetters([]);
     setColor("#000");
+    setIsInputDisabled(false);
+    setInput("");
   }
 
   function guessLetter(letter) {
@@ -36,7 +41,7 @@ export default function App() {
       setLives(newLives);
 
       if (newLives === 0) {
-        gameOver();
+        gameOver(false);
       }
     } else {
       const newWord = normSecret.map((letter, idx) =>
@@ -45,7 +50,7 @@ export default function App() {
       setWord(newWord);
 
       if (!newWord.includes("_")) {
-        gameOver();
+        gameOver(true);
       }
     }
   }
@@ -55,16 +60,26 @@ export default function App() {
     setLetters(alphabet);
     setColor(isWinner ? "#27AE60" : "#f00");
   }
+
   return (
     <>
       <GlobalStyle />
       <Wrapper>
         <Game lives={lives} startGame={startGame} word={word} color={color} />
         <Letters letters={letters} guessLetter={guessLetter} />
-        <Guess secret={secret} normSecret={normSecret} gameOver={gameOver} />
+        <Guess
+          secret={secret}
+          normSecret={normSecret}
+          gameOver={gameOver}
+          isInputDisabled={isInputDisabled}
+        />
       </Wrapper>
     </>
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`;
