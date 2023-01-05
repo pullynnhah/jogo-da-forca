@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { alphabet } from '../utils/data';
-import Button from './styles/Button';
+import { alphabet } from "../utils/data";
+import Button from "./styles/Button";
 
 export default function Letters({ letters, guessLetter }) {
   return (
